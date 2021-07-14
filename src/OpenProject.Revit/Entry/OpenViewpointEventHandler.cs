@@ -8,6 +8,7 @@ using OpenProject.Shared.ViewModels.Bcf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using iabi.BCF.APIObjects.V21;
 using OpenProject.Shared.Math3D;
 using OpenProject.Shared.Math3D.Enumeration;
 
@@ -216,10 +217,10 @@ namespace OpenProject.Revit.Entry
 
     private static void ApplyClippingPlanes(BcfViewpointViewModel bcfViewpoint, UIDocument uiDocument)
     {
-      var clippingPlanes = bcfViewpoint.Viewpoint?.Clipping_planes;
-
-      if (clippingPlanes == null || !clippingPlanes.Any() || uiDocument.ActiveView is not View3D view3d)
+      if (uiDocument.ActiveView is not View3D view3d)
         return;
+
+      var clippingPlanes = bcfViewpoint.Viewpoint?.Clipping_planes ?? new List<Clipping_plane>();
 
       AxisAlignedBoundingBox boundingBox = clippingPlanes
         .Select(p => p.ToAxisAlignedBoundingBox(_viewpointAngleThresholdRad))
