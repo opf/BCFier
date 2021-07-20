@@ -1,8 +1,8 @@
-﻿<Application x:Class="Bcfier.Win.App"
+﻿<Application x:Class="OpenProject.Windows.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="MainWindow.xaml">
-    <Application.Resources>
-         
-    </Application.Resources>
+             Startup="OnStartup">
+  <Application.Resources>
+    <ResourceDictionary Source="ViewModelMapping.xaml" />
+  </Application.Resources>
 </Application>

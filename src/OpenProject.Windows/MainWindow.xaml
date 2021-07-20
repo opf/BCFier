@@ -3,17 +3,25 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:ctr="clr-namespace:OpenProject.UserControls;assembly=OpenProject"
-  xmlns:data="clr-namespace:OpenProject.Data;assembly=OpenProject"
-  Name="mainWin"
+  xmlns:vm="clr-namespace:OpenProject.Windows"
   Title="OpenProject Revit Add-in"
-  Closing="Window_Closing"
   Icon="Assets/openproject.ico"
-  Loaded="MainWindow_OnLoaded"
-  WindowStartupLocation="Manual">
+  WindowStartupLocation="Manual"
+  Width="{Binding Path=(vm:MainWindowViewModel.Width)}"
+  Height="{Binding Path=(vm:MainWindowViewModel.Height)}"
+  Top="{Binding Path=(vm:MainWindowViewModel.Top)}"
+  Left="{Binding Path=(vm:MainWindowViewModel.Left)}">
+
   <Grid>
-    <ctr:BcfierPanel
-      Name="Bcfier"
-      HorizontalAlignment="Stretch"
-      HorizontalContentAlignment="Stretch" />
+    <Grid.RowDefinitions>
+      <RowDefinition Height="3*" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <!-- <ctr:BcfierPanel -->
+    <!--   DataContext="{Binding Path=(vm:MainWindowViewModel.BcfierPanelViewModel)}" -->
+    <!--   HorizontalAlignment="Stretch" -->
+    <!--   HorizontalContentAlignment="Stretch" /> -->
+    <TextBlock Grid.Row="0" Text="{Binding Path=(vm:MainWindowViewModel.TestText)}" />
+    <TextBlock Grid.Row="1" Text="Text without Binding" />
   </Grid>
 </Window>
